@@ -1,0 +1,1049 @@
+/* Reset */
+body, h1, h2, p, button {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Generale */
+body {
+    background-color: #f7f7f7;
+    color: #333;
+    overflow-x: hidden; /* Evita scrolling orizzontale */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #d32f2f; /* Colore bloccato */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    transition: top 0.3s ease-in-out;
+}
+
+header.hidden {
+    top: -100px; /* Nasconde l'header */
+}
+
+/* Bottone cambio tema */
+#theme-switcher {
+    position: fixed;
+    top: 20px; /* Sempre visibile in alto */
+    right: 20px;
+    background: #fff;
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1100; /* Sopra gli altri elementi */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#theme-switcher:hover {
+    background: #ccc;
+}
+
+/* Freccetta toggle header */
+.toggle-btn {
+    position: fixed; /* Sempre visibile sotto l'header */
+    top: 60px; /* Posizione sotto l'header */
+    right: 20px;
+    background: #fff; /* Cambia dinamicamente */
+    color: #333;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 50%; /* Forma circolare */
+    font-size: 16px;
+    z-index: 1100; /* Sopra gli altri elementi */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.toggle-btn:hover {
+    background: #ccc;
+    transform: scale(1.2); /* Ingrandimento al passaggio del mouse */
+}
+
+body.dark .toggle-btn {
+    background: #555; /* Adattato per modalità scura */
+    color: #fff;
+}
+
+/* Modalità scura */
+body.dark {
+    background-color: #222;
+    color: #fff;
+}
+
+body.dark header {
+    background: #444; /* Lock della modalità scura sull'header */
+}
+
+body.dark #theme-switcher {
+    background: #555;
+    color: #fff;
+}
+
+/* Prima schermata (Intro) */
+#intro {
+    height: 100vh;
+    background: linear-gradient(135deg, #d32f2f, #f57c00); /* Gradiente originale */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    animation: fadeIn 1s ease; /* Animazione per mostrare la sezione */
+}
+
+#intro h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-family: 'Courier New', monospace; /* Font personalizzato */
+    animation: slideUp 1s ease; /* Ripristina animazione verso l'alto */
+}
+
+#intro p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    animation: fadeIn 1.5s ease; /* Leggera dissolvenza */
+}
+
+/* Gallery */
+#gallery {
+    margin-top: 100px; /* Offset per evitare che l'header copra questa sezione */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.post {
+    text-align: center;
+    cursor: pointer;
+    perspective: 800px; /* Aggiunge profondità 3D */
+}
+
+.post-box {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border: 2px solid #d32f2f;
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s ease-in-out, background-color 0.3s ease;
+    transform: rotateX(0deg); /* Reset iniziale */
+    position: relative;
+    overflow: hidden;
+}
+
+.post-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Animazione immagine */
+}
+
+.post:hover .post-box {
+    transform: rotateX(-10deg); /* Piegamento verso l'alto */
+    background-color: #f7f7f7;
+}
+
+/* Testo nei post */
+.post p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+    position: absolute;
+    bottom: 20px; /* Posiziona il testo in basso */
+    width: 100%;
+    text-align: center;
+    opacity: 1;
+    transition: transform 0.4s ease-in-out, opacity 0.3s ease;
+}
+
+.post:hover p {
+    transform: translateY(-30px); /* Porta il testo verso l'alto */
+    opacity: 0; /* Nasconde il testo sotto l'immagine */
+}
+
+/* Popup */
+#popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    animation: fadeIn 0.5s;
+}
+
+body.dark #popup .popup-content {
+    background-color: #222; /* Adatta alla modalità scura */
+    color: #fff;
+}
+
+/* Animazioni */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Caricamento */
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+#loading img {
+    width: 100px;
+    animation: spin 2s linear infinite; /* Animazione di rotazione */
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Responsività */
+@media (max-width: 768px) {
+    #theme-switcher, .toggle-btn {
+        top: 10px;
+        right: 10px;
+        padding: 8px 12px;
+    }
+
+    .toggle-btn {
+        font-size: 14px;
+    }
+}
+
+/* Link Instagram */
+.instagram-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff0066;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    animation: fadeInUp 1s ease-in-out; /* Animazione per far apparire il link */
+}
+
+.instagram-link:hover {
+    transform: scale(1.1); /* Ingrandisce leggermente il link */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+    background-color: #ff0050; /* Colore di sfondo cambia al passaggio del mouse */
+}
+
+/* Animazione che fa comparire il link con un movimento verso l'alto */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Inizia 20px sotto */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Arriva alla posizione originale */
+    }
+}
+
+/* Freccetta toggle header */
+.toggle-btn {
+    position: fixed; /* Sempre visibile sotto l'header */
+    top: 60px; /* Posizione sotto l'header */
+    right: 20px;
+    background: linear-gradient(135deg, #ff7f50, #ff6347); /* Gradiente per un aspetto moderno */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%; /* Forma circolare */
+    font-size: 18px; /* Dimensione maggiore per visibilità */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aggiungi profondità */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.toggle-btn:hover {
+    transform: scale(1.2); /* Ingrandisce leggermente al passaggio del mouse */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3); /* Ombra più intensa */
+}
+
+/* Modalità scura della freccetta */
+body.dark .toggle-btn {
+    background: linear-gradient(135deg, #444, #666); /* Gradiente scuro per coerenza */
+    color: #fff;
+}
+
+body.dark header {
+    background: #333; /* Cambia l'header per adattarsi alla modalità scura */
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#theme-switcher {
+    position: absolute; /* Relativo all'header */
+    top: 20px;
+    right: 15px;
+    background: #fff;
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1100; /* Mantienilo sopra gli altri elementi */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+body {
+    overflow-y: hidden; /* Nasconde lo scroll verticale */
+}
+
+#theme-switcher {
+    position: absolute; /* Posizionamento relativo all'header */
+    top: 50%;           /* Centra verticalmente nel contesto dell'header */
+    right: 100px;        /* Mantienilo distante dal bordo destro */
+    transform: translateY(-50%); /* Compensa il margine per il centramento verticale */
+    background: #fff;
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1100;      /* Sopra gli altri elementi */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header.hidden #theme-switcher {
+    display: none; /* Nasconde il bottone quando l'header è nascosto */
+}
+
+@media (max-width: 768px) {
+    #theme-switcher {
+        top: 10px; /* Adatta la posizione per schermi piccoli */
+        right: 10px;
+        padding: 8px 12px; /* Riduci le dimensioni del bottone */
+    }
+}
+
+#gallery {
+    height: 100vh; /* Imposta l'altezza al 100% dell'altezza della finestra */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra verticalmente i contenuti */
+    margin: 0; /* Rimuove margini per uniformità */
+    padding: 20px; /* Spaziatura interna per il contenuto */
+    box-sizing: border-box; /* Include il padding nella dimensione totale */
+}
+
+.section {
+    height: 100vh; /* Ogni sezione occupa l'intero schermo */
+    scroll-snap-align: start; /* Allinea le sezioni durante lo scrolling */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box; /* Include il padding nelle dimensioni */
+}
+
+/* Contenitore del testo nei post (frame in basso) */
+.post-frame {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px; /* Altezza della cornice */
+    background-color: #fff; /* Colore predefinito per tema chiaro */
+    color: #333; /* Testo leggibile in tema chiaro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Ombra leggera per separare dal contenitore */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transizione per adattarsi al tema */
+    border-top: 2px solid #ddd; /* Bordo superiore per separare visivamente */
+}
+
+/* Modalità scura */
+body.dark .post-frame {
+    background-color: #444; /* Adatta il frame al tema scuro */
+    color: #fff; /* Testo leggibile in tema scuro */
+    border-top: 2px solid #666; /* Bordo superiore più scuro */
+}
+
+/* Testo animato nel frame */
+.post-frame p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Animazione per testo */
+}
+
+.post:hover .post-frame p {
+    transform: scale(1.1); /* Leggera animazione al passaggio del mouse */
+    opacity: 1;
+}
+
+/* Contenitore del testo nei post (frame in basso) */
+.post-frame {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px; /* Altezza della cornice */
+    background-color: #fff; /* Colore predefinito per tema chiaro */
+    color: #333; /* Testo leggibile in tema chiaro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Ombra leggera per separare dal contenitore */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transizione per adattarsi al tema */
+    border-top: 2px solid #ddd; /* Bordo superiore per separazione visiva */
+}
+
+/* Modalità scura */
+body.dark .post-frame {
+    background-color: #444; /* Adatta il frame al tema scuro */
+    color: #fff; /* Cambia il colore del testo nel frame */
+    border-top: 2px solid #666; /* Bordo superiore più scuro */
+}
+
+/* Testo animato nel frame */
+.post-frame p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    transition: transform 0.3s ease, opacity 0.3s ease, color 0.3s ease; /* Animazione per testo */
+}
+
+body.dark .post-frame p {
+    color: #fff; /* Assicurati che il colore del testo cambi in modalità scura */
+}
+
+.post:hover .post-frame p {
+    transform: scale(1.1); /* Leggera animazione al passaggio del mouse */
+    opacity: 1;
+}
+
+.post-container {
+    display: grid; /* Utilizza un layout a griglia */
+    grid-template-columns: repeat(3, 1fr); /* Tre colonne uguali */
+    gap: 20px; /* Spaziatura tra i post */
+    justify-items: center; /* Centra i post all'interno della griglia */
+    margin-top: 20px;
+}
+
+.post {
+    text-align: center;
+    cursor: pointer;
+    width: 300px; /* Larghezza uniforme per i post */
+    position: relative;
+    perspective: 800px; /* Aggiunge profondità 3D */
+}
+
+.post-box {
+    width: 100%; /* Adatta alla larghezza del contenitore */
+    height: 300px; /* Altezza uniforme */
+    overflow: hidden;
+    border: 2px solid #d32f2f;
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s ease-in-out, background-color 0.3s ease;
+    transform: rotateX(0deg); /* Reset iniziale */
+    position: relative;
+}
+
+.post-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Animazione immagine */
+}
+
+/* Frame in basso */
+.post-frame {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-top: 2px solid #ddd;
+}
+
+body.dark .post-frame {
+    background-color: #444;
+    color: #fff;
+}
+
+.post-frame p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.3s ease, opacity 0.3s ease, color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .post-container {
+        grid-template-columns: repeat(2, 1fr); /* Due colonne per schermi piccoli */
+    }
+}
+
+@media (max-width: 480px) {
+    .post-container {
+        grid-template-columns: 1fr; /* Una colonna per schermi molto piccoli */
+    }
+}
+
+/* Scritta "Post in evidenza" centrata nella seconda schermata */
+#gallery h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    position: absolute;
+    top: 50%; /* Posiziona al centro */
+    left: 50%; /* Posiziona al centro orizzontalmente */
+    transform: translate(-50%, -50%); /* Centrato esattamente */
+    opacity: 0; /* Inizialmente nascosta */
+    transition: opacity 1s ease; /* Transizione per l'animazione */
+}
+
+/* Animazione per mostrare la scritta quando la seconda sezione diventa visibile */
+.show-posts-heading {
+    opacity: 1; /* Mostra la scritta */
+    transition: opacity 1s ease 1s; /* Mostra con un ritardo di 1 secondo */
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Scritta che ritorna al suo posto */
+.hide-posts-heading {
+    opacity: 0; /* Nasconde la scritta */
+    transform: translate(-50%, -50%) scale(0.5); /* La fa diventare piccola prima di nasconderla */
+}
+
+/* Scritta "Post in evidenza" centrata nella seconda schermata */
+#gallery h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    position: absolute;
+    top: 50%; /* Posiziona al centro */
+    left: 50%; /* Posiziona al centro orizzontalmente */
+    transform: translate(-50%, -50%); /* Centrato esattamente */
+    opacity: 0; /* Inizialmente nascosta */
+    transition: opacity 1s ease; /* Transizione per l'animazione */
+}
+
+/* Animazione per mostrare la scritta quando la seconda sezione diventa visibile */
+.show-posts-heading {
+    opacity: 1; /* Mostra la scritta */
+    transition: opacity 1s ease 1s; /* Mostra con un ritardo di 1 secondo */
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Scritta che ritorna al suo posto */
+.hide-posts-heading {
+    opacity: 0; /* Nasconde la scritta */
+    transform: translate(-50%, -50%) scale(0.5); /* La fa diventare piccola prima di nasconderla */
+}
+
+/* Scritta "Post in evidenza" centrata nella seconda schermata */
+#gallery h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    position: absolute;
+    top: 50%; /* Posiziona al centro */
+    left: 50%; /* Posiziona al centro orizzontalmente */
+    transform: translate(-50%, -50%); /* Centrato esattamente */
+    opacity: 0; /* Inizialmente nascosta */
+    transition: opacity 1s ease, transform 1s ease; /* Transizione per l'animazione */
+}
+
+/* Animazione per mostrare la scritta quando la seconda sezione diventa visibile */
+.show-posts-heading {
+    opacity: 1; /* Mostra la scritta */
+    transform: translate(-50%, -50%) scale(1); /* Ripristina la posizione originale */
+}
+
+/* Nascondere la scritta dopo che è stata visibile */
+.hide-posts-heading {
+    opacity: 0; /* Nasconde la scritta */
+    transform: translate(-50%, -50%) scale(0.5); /* La fa diventare piccola prima di nasconderla */
+}
+
+/* Scritta "Post in evidenza" centrata nella seconda schermata */
+#gallery h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    position: absolute;
+    top: 50%; /* Posiziona al centro */
+    left: 50%; /* Posiziona al centro orizzontalmente */
+    transform: translate(-50%, -50%); /* Centrato esattamente */
+    opacity: 0; /* Inizialmente nascosta */
+    transition: opacity 1s ease, transform 1s ease; /* Transizione per l'animazione */
+}
+
+/* Animazione per mostrare la scritta quando la seconda sezione diventa visibile */
+.show-posts-heading {
+    opacity: 1; /* Mostra la scritta */
+    transform: translate(-50%, -50%) scale(1); /* Ripristina la posizione originale */
+}
+
+/* Nascondere la scritta dopo che è stata visibile */
+.hide-posts-heading {
+    opacity: 0; /* Nasconde la scritta */
+    transform: translate(-50%, -50%) scale(0.5); /* La fa diventare piccola prima di nasconderla */
+}
+
+/* Scritta "Post in evidenza" centrata nella seconda schermata */
+#gallery h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    position: absolute;
+    top: 50%; /* Posiziona al centro */
+    left: 50%; /* Posiziona al centro orizzontalmente */
+    transform: translate(-50%, -50%); /* Centrato esattamente */
+    opacity: 0; /* Inizialmente nascosta */
+    transition: opacity 1s ease, transform 1s ease; /* Transizione per l'animazione */
+}
+
+/* Animazione per mostrare la scritta quando la seconda sezione diventa visibile */
+.show-posts-heading {
+    opacity: 1; /* Mostra la scritta */
+    transform: translate(-50%, -50%) scale(1); /* Ripristina la posizione originale */
+}
+
+/* Nascondere la scritta dopo che è stata visibile */
+.hide-posts-heading {
+    opacity: 0; /* Nasconde la scritta */
+    transform: translate(-50%, -50%) scale(0.5); /* La fa diventare piccola prima di nasconderla */
+}
+
+/* Animazione di comparsa più fluida */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Nascondere la scritta dopo 2 secondi */
+.hide-posts-heading {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+}
+
+/* Scritta "Post in evidenza" centrata nella seconda schermata */
+#gallery h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    position: absolute;
+    top: 50%; /* Posiziona al centro */
+    left: 50%; /* Posiziona al centro orizzontalmente */
+    transform: translate(-50%, -50%); /* Centrato esattamente */
+    opacity: 0; /* Inizialmente nascosta */
+    transition: opacity 1s ease, transform 1s ease; /* Transizione per l'animazione */
+}
+
+/* Animazione per mostrare la scritta quando la seconda sezione diventa visibile */
+.show-posts-heading {
+    opacity: 1; /* Mostra la scritta */
+    transform: translate(-50%, -50%) scale(1); /* Ripristina la posizione originale */
+}
+
+/* Nascondere la scritta dopo che è stata visibile */
+.hide-posts-heading {
+    opacity: 0; /* Nasconde la scritta */
+    transform: translate(-50%, -50%) scale(0.5); /* La fa diventare piccola prima di nasconderla */
+}
+
+/* Nascondi tutte le immagini tranne la prima */
+.post-box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0; /* Nasconde l'immagine */
+    transition: opacity 0.3s ease; /* Transizione per il cambio immagine */
+}
+
+/* Mostra solo l'immagine visibile */
+.post-box img:first-child {
+    opacity: 1; /* Solo la prima immagine visibile di default */
+}
+
+/* Dimensioni del contenitore del post */
+.post-box {
+    width: 300px; /* Mantieni la larghezza del contenitore */
+    height: 375px; /* Altezza in proporzione a 1080x1350 */
+    overflow: hidden; /* Nasconde parti delle immagini che escono dal contenitore */
+    border: 2px solid #d32f2f;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    transition: transform 0.4s ease-in-out, background-color 0.3s ease;
+}
+
+/* Stile delle immagini */
+.post-box img {
+    width: 100%;
+    height: auto; /* Mantieni le proporzioni corrette */
+    object-fit: cover; /* Ritaglia l'immagine per riempire il contenitore */
+    transition: opacity 0.3s ease; /* Transizione fluida per il cambio immagine */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Mostra solo l'immagine visibile */
+.post-box img:first-child {
+    opacity: 1;
+}
+
+/* Nascondi le altre immagini */
+.post-box img {
+    opacity: 0;
+}
+
+.post-box img {
+    width: 100%; /* L'immagine occupa tutta la larghezza disponibile */
+    height: 100%; /* Adatta l'altezza mantenendo le proporzioni */
+    object-fit: contain; /* Mostra l'intera immagine senza ritagliarla */
+    object-position: center; /* Centra l'immagine all'interno del contenitore */
+}
+
+/* Container dei post */
+.post-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonne */
+    gap: 20px;
+    justify-items: center; /* Centrare i post */
+    margin: 20px 0;
+    height: 100vh; /* Ogni schermata occupa l'intero schermo */
+    align-items: center;
+}
+
+/* Nascondi i gruppi non attivi */
+.hidden {
+    display: none;
+}
+
+#popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    background-color: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+}
+
+.toggle-btn {
+    position: fixed; /* Sempre visibile */
+    top: 60px; /* Adatta la posizione rispetto all'header */
+    right: 20px;
+    background: #fff;
+    color: #333;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 16px;
+    z-index: 1100; /* Sopra gli altri elementi */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.toggle-btn:hover {
+    background: #ccc;
+    transform: scale(1.2);
+}
+
+header.hidden + .toggle-btn {
+    top: 20px; /* Rimane visibile anche con l'header nascosto */
+}
+
+body.dark .toggle-btn {
+    background: #555;
+    color: #fff;
+}
+
+.toggle-btn {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    background: linear-gradient(135deg, #ff7f50, #ff6347);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 16px;
+    z-index: 1100;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.toggle-btn:hover {
+    transform: scale(1.2);
+    background: #f56a4d;
+}
+
+header.hidden + .toggle-btn {
+    top: 20px; /* Posizione quando l'header è nascosto */
+}
+
+#popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+}
+
+.popup-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Stile per le immagini nei post */
+.post-box {
+    width: 300px; /* Dimensione del contenitore */
+    height: 300px; /* Dimensione del contenitore */
+    overflow: hidden;
+    border: 2px solid #d32f2f;
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.4s ease-in-out, background-color 0.3s ease;
+}
+
+.post-box img {
+    width: 100%; /* Assicura che l'immagine occupi tutta la larghezza */
+    height: 100%; /* Assicura che l'immagine occupi tutta l'altezza */
+    object-fit: cover; /* Ritaglia l'immagine per adattarsi senza distorsioni */
+    max-width: 1080px; /* Imposta dimensioni massime */
+    max-height: 1080px; /* Imposta dimensioni massime */
+    transition: transform 0.3s ease; /* Animazione per l'immagine */
+}
+
+/* Immagine di anteprima */
+.video-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Sempre sopra il video inizialmente */
+    transition: opacity 0.3s ease; /* Transizione fluida */
+    opacity: 1; /* Visibile di default */
+}
+
+/* Video */
+.post-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Sotto l'immagine di default */
+    opacity: 0; /* Nascosto di default */
+    transition: opacity 0.3s ease, z-index 0.3s ease; /* Transizione fluida */
+}
+
+/* Quando il video è visibile */
+.post-box video.playing {
+    opacity: 1; /* Mostra il video */
+    z-index: 2; /* Porta il video sopra l'immagine */
+}
+
+/* Quando l'immagine è nascosta */
+.video-preview.hidden {
+    opacity: 0; /* Nasconde l'immagine */
+    z-index: 0; /* Porta l'immagine sotto il video */
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #d32f2f;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    transition: top 0.3s ease-in-out; /* Transizione fluida */
+}
+
+/* Pulsante di toggle per l'header */
+#toggle-header {
+    position: fixed;
+    top: 10px; /* Posizionato sopra l'header */
+    right: 20px;
+    background: white;
+    color: #333;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 1101; /* Sopra l'header */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hover sul pulsante */
+#toggle-header:hover {
+    transform: scale(1.2); /* Effetto di ingrandimento */
+    background-color: #f1f1f1; /* Cambia colore */
+}
+
+/* Quando l'header è nascosto */
+header.hidden {
+    top: -100px; /* Nasconde l'header */
+}
+
+/* Aggiusta la posizione del pulsante quando l'header è nascosto */
+header.hidden + #toggle-header {
+    top: calc(100% + 20px); /* Posiziona la freccetta sotto l'header */
+}
+
