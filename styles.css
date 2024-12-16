@@ -1047,3 +1047,27 @@ header.hidden + #toggle-header {
     top: calc(100% + 20px); /* Posiziona la freccetta sotto l'header */
 }
 
+.fixed-links {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.fixed-links a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.fixed-links a:hover {
+    text-decoration: underline;
+}
+
