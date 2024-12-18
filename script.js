@@ -246,12 +246,12 @@ document.addEventListener("keydown", (event) => {
 
 // Lista dei post e i loro dettagli
 const postDetails = {
-    post1: "La violenza sulle donne non è solo fisica. È psicologica, economica e verbale. Spesso è invisibile, ma i suoi effetti possono essere devastanti.. Chiedi aiuto al 1522, è anonimo e gratuito. Ogni passo verso la libertà inizia con una parola.",
-    post2: "La forza delle donne è più grande della violenza che subiscono. Ogni giorno, milioni di donne trovano il coraggio di chiedere aiuto. Ricordati che non sei sola. La tua voce conta. Chiama il 1522, è il primo passo per uscire dalla violenza.",
-    post3: "Ogni donna ha diritto alla libertà. La violenza non è amore. Il silenzio non deve tenerti imprigionata. Esiste una rete pronta ad aiutarti. Chiama il 1522.",
-    post4: "La solidarietà può salvare una vita. Insieme possiamo fare la differenza. Se qualcuno ha bisogno di aiuto, tendigli una mano. Aiuta a costruire una rete di sicurezza per chi soffre. Chiama il 1522, ogni piccolo gesto conta.",
-    post5: "La violenza non è amore. Non accettare che il controllo, la gelosia o le minacce siano mascherati come affetto. Chiedi aiuto al 1522, è anonimo e gratuito. Ogni passo verso la libertà inizia con una parola.",
-    post6: "Non sei sola. Ogni passo verso la libertà inizia con una parola. Il supporto è a portata di mano. Chiama il 1522. Insieme possiamo spezzare il silenzio e aiutare chi soffre.",
+    post1: "La violenza sulle donne non è solo fisica. Puo essere anche psicologica, economica e verbale. Spesso è invisibile, ma i suoi effetti possono essere devastanti.. Chiedi aiuto al 1522, è anonimo e gratuito. Ogni passo verso la libertà inizia con una parola.",
+    post2: "La forza delle donne è più grande della violenza che subiscono. Ogni giorno, milioni di donne trovano il coraggio di chiedere aiuto. Ricordati che non sei sola. La tua voce conta. Chiama il 1522, è il primo passo per uscire da questa terribile forma di violenza.",
+    post3: "Ogni donna ha diritto alla libertà come ogni essere umano. La violenza non è amore. Il silenzio non deve tenerti imprigionata. Esiste una rete pronta ad aiutarti. Chiama il 1522.",
+    post4: "Una rete solidale può salvare una vita. Insieme possiamo fare la differenza. Se qualcuno ha bisogno di aiuto, tendigli una mano. Aiuta a costruire una rete di sicurezza per chi ne ha bisogno e soffre. Chiama il 1522, ogni piccolo gesto conta.",
+    post5: "Bisogna chiedere aiuto anche quando non si ha la consapevolezza che una relazione amorosa è tossica. Chiama il 1522...",
+    post6: "L'amore non ha bisogno di prove controlli e prescrizioni. Chiama il 1522. Insieme possiamo spezzare il silenzio e aiutarti.",
 };
 
 // Funzione per aprire il popup
