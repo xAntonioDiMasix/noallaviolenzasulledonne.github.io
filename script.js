@@ -248,7 +248,7 @@ document.addEventListener("keydown", (event) => {
 const postDetails = {
     post1: "La violenza sulle donne non è solo fisica. È psicologica, economica e verbale. Spesso è invisibile, ma i suoi effetti possono essere devastanti.. Chiedi aiuto al 1522, è anonimo e gratuito. Ogni passo verso la libertà inizia con una parola.",
     post2: "La forza delle donne è più grande della violenza che subiscono. Ogni giorno, milioni di donne trovano il coraggio di chiedere aiuto. Ricordati che non sei sola. La tua voce conta. Chiama il 1522, è il primo passo per uscire dalla violenza.",
-    post3: "Ogni donna ha diritto alla libertà. La violenza non è amore. Il silenzio non deve tenerti imprigionata. Se ti da sola parlane, è un atto di coraggio. Esiste una rete pronta ad aiutarti. Chiama il 1522.",
+    post3: "Ogni donna ha diritto alla libertà. La violenza non è amore. Il silenzio non deve tenerti imprigionata. Esiste una rete pronta ad aiutarti. Chiama il 1522.",
     post4: "La solidarietà può salvare una vita. Insieme possiamo fare la differenza. Se qualcuno ha bisogno di aiuto, tendigli una mano. Aiuta a costruire una rete di sicurezza per chi soffre. Chiama il 1522, ogni piccolo gesto conta.",
     post5: "La violenza non è amore. Non accettare che il controllo, la gelosia o le minacce siano mascherati come affetto. Chiedi aiuto al 1522, è anonimo e gratuito. Ogni passo verso la libertà inizia con una parola.",
     post6: "Non sei sola. Ogni passo verso la libertà inizia con una parola. Il supporto è a portata di mano. Chiama il 1522. Insieme possiamo spezzare il silenzio e aiutare chi soffre.",
